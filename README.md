@@ -45,3 +45,7 @@ Metabot query `ip` has multiple qualifiers.
 * `private`: return only private IP addresses.
 * `parent`: return the parent IP address range instead of the actual IP address on the host.
 * `netmask`: return the address in `ip/netmask` format instead of `ip/cidr` format.
+
+## Custom URL
+By default, Metabot retrieves data from the Packet URL https://metadata.packet.com/metadata , but you can override it with the `--url <url>` option.
+
