@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 )
 
 // Bonding mode
@@ -52,14 +53,26 @@ type Metadata struct {
 
 func getMetadata(u string) ([]byte, error) {
 	// get metadata
-	resp, err := http.Get(u)
+	var body []byte
+	parsed, err := url.Parse(u)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("unable to parse url %s: %v", u, err)
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
+	if parsed.Scheme == "file" {
+		body, err = ioutil.ReadFile(parsed.Path)
+		if err != nil {
+			return nil, err
+		}
+        } else {
+		resp, err := http.Get(u)
+		if err != nil {
+			return nil, err
+		}
+		defer resp.Body.Close()
+		body, err = ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
 	}
 	return body, nil
 }
