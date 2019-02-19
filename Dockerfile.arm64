@@ -1,0 +1,8 @@
+FROM scratch
+
+ARG BINARY=metabot
+ARG ARCH=arm64
+
+COPY bin/${BINARY}-${ARCH} ${BINARY}
+
+ENTRYPOINT ["/${BINARY}"]
