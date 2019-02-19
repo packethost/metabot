@@ -39,11 +39,13 @@ For each query type, here are the acceptable qualifiers. If the qualifier is unk
 #### ip
 Metabot query `ip` has multiple qualifiers.
 
-* `address`: return only the address without the `/x` cidr part, e.g. `10.0.10.10 205.206.207.122 2604:1380:1:9200::1`.
 * `4`: return only IPv4 addresses.
 * `6`: return only IPv6 addresses.
 * `private`: return only private IP addresses.
+* `public`: return only public IP addresses.
+* `network`: return the address of the network the host is in, rather than the address of the host itself.
 * `parent`: return the parent IP address range instead of the actual IP address on the host.
+* `address`: return only the address without the `/x` cidr part, e.g. `10.0.10.10 205.206.207.122 2604:1380:1:9200::1`.
 * `netmask`: return the address in `ip/netmask` format instead of `ip/cidr` format.
 
 ## Custom URL
