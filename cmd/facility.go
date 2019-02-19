@@ -2,9 +2,8 @@ package cmd
 
 import (
   "fmt"
-
+  "os"
   "github.com/spf13/cobra"
-  "github.com/packethost/metabot/metadata"
 )
 
 func init() {
@@ -17,6 +16,8 @@ var facilityCmd = &cobra.Command{
   Long:  `Print the packet facility id`,
   Run: func(cmd *cobra.Command, args []string) {
      // facility has no qualifiers
+    fmt.Println(data.Facility)
+    os.Exit(0)
   },
 }
 

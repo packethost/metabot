@@ -1,7 +1,10 @@
-FROM scratch
+FROM alpine:3.9
 
 ARG BINARY=metabot
 ARG ARCH=arm64
+
+# needed for TLS
+RUN apk --update add ca-certificates
 
 COPY bin/${BINARY}-${ARCH} ${BINARY}
 

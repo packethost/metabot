@@ -90,7 +90,7 @@ endif
 
 ## Lint the files
 lint: pkgs golint gometalinter
-	@$(BUILD_CMD) gometalinter --disable-all --enable=golint   pkg/... cmd 
+	@$(BUILD_CMD) gometalinter --disable-all --enable=golint   cmd/... metadata
 
 ## Run unittests
 test: pkgs
@@ -130,7 +130,7 @@ sub-build-%:
 ## Build the binary for a single ARCH
 build: $(DIST_BINARY)
 $(DIST_BINARY): $(DIST_DIR) vendor
-	$(BUILD_CMD) go build -v -o $@ $(LDFLAGS) $(PACKAGE_NAME)/cmd/csi-packet-driver
+	$(BUILD_CMD) go build -v -o $@ $(LDFLAGS) $(PACKAGE_NAME)
 
 ## ensure we have dep installed
 dep: 
