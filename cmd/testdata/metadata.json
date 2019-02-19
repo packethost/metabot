@@ -1,0 +1,180 @@
+{
+  "id": "b642678f-1d6e-45a2-aed1-bd0a63135fe5",
+  "hostname": "kubetest",
+  "iqn": "iqn.2019-02.net.packet:device.b642678f",
+  "operating_system": {
+    "slug": "coreos_stable",
+    "distro": "coreos",
+    "version": "stable",
+    "license_activation": {
+      "state": "unlicensed"
+    },
+    "image_tag": null
+  },
+  "plan": "c2.medium.x86",
+  "class": "c2.medium.x86",
+  "facility": "ewr1",
+  "tags": [],
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCGj5PWE3cGGxb4yyfokthNS4coWai+ZguRMWd9Rv8rJ14TLNsYoI3czTypaB67cG/Zx+1Q4Y3tYfcXyW/iBDiKEeSpK4x1t6FdPLWsNrFT5EEsNzQY5oYpzDx7fU3W6nGveUL4swflwFiY6H7zS/S27jV4CESrTY0WGcwcell3a79nOWfqyrSIEhGCyrQXycfYMguCjGmKyD0CoDjWbbpn9OjEn3EHHvAGWI2NJ93hm0sc0or5QAcsR/N5hX5cSwHoXyTgV1EYuDffHKOGy44mLsFyrzsDn+DN38ITPrpmxtNKSqztfyDXAZqAeNK8jxRt5kxSKvi1JknirGbD7ifl",
+    "ssh-dss AAAAB3NzaC1kc3MAAACBAMaIs/peADk790ki4FlN6bGof0CaRHtF2LLAi8L99RPhj2FkcnEE45THC1qTvZgA9pTI5gpX0OH9HbHtYg0gEuNmQVWGe54rseUmfg2N+f7PXgtHaPXX4+B6gN1M99KehmBMOh+rbkxJTx/qbLxWzV/YOsFdt/BDFdX/KbE432ptAAAAFQCHYRnA+qgeRZZbrIDyBAn+X3vqmwAAAIAGIfCJUKOc9Wj4oigzL3BXC8IlfZj4LFgln5MxnmoSOFG7ECYQgYNx3j4Ksvr8A7nvG0TlXHVEtBW1PJbW/X7/N8zPt/zk+5xDpa+cGGQ5pDt6ZmcuEnsmJ1tST/rlfaFd4bs9EkJIS9qS/DLLV343DzdJMgQW/4OjlLKJfFgaFAAAAIAt01yuRtevAU6aO9DtWb3TWBSjk0ZPPGjzsAciJSPVl2TYtQKeRNkt2LC7GDKJ4ECUCif8XoqF+iLcDGrbas6MQtFnKq0xd1qw8a8MonySrrgFZoXcjB3TJqbAz8JI16zZTOoYediMaLaw0WJNaXp+giPUaYhvcr75kQaRae/xyQ=="
+  ],
+  "storage": {
+    "disks": [
+      {
+        "device": "/dev/sda",
+        "wipeTable": true,
+        "partitions": [
+          {
+            "label": "BIOS",
+            "number": 1,
+            "size": 4096
+          },
+          {
+            "label": "SWAP",
+            "number": 2,
+            "size": "3993600"
+          },
+          {
+            "label": "ROOT",
+            "number": 3,
+            "size": 0
+          }
+        ]
+      }
+    ],
+    "filesystems": [
+      {
+        "mount": {
+          "device": "/dev/sda3",
+          "format": "ext4",
+          "point": "/",
+          "create": {
+            "options": [
+              "-L",
+              "ROOT"
+            ]
+          }
+        }
+      },
+      {
+        "mount": {
+          "device": "/dev/sda2",
+          "format": "swap",
+          "point": "none",
+          "create": {
+            "options": [
+              "-L",
+              "SWAP"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "network": {
+    "bonding": {
+      "mode": 4
+    },
+    "interfaces": [
+      {
+        "name": "eth0",
+        "mac": "ec:0d:9a:c0:02:4c",
+        "bond": "bond0"
+      },
+      {
+        "name": "eth1",
+        "mac": "ec:0d:9a:c0:02:4d",
+        "bond": "bond0"
+      }
+    ],
+    "addresses": [
+      {
+        "id": "362c8eb4-c156-499c-addc-6c1167253be8",
+        "address_family": 4,
+        "netmask": "255.255.255.254",
+        "created_at": "2019-02-12T14:29:27Z",
+        "public": true,
+        "cidr": 31,
+        "management": true,
+        "enabled": true,
+        "network": "147.75.67.72",
+        "address": "147.75.67.73",
+        "gateway": "147.75.67.72",
+        "parent_block": {
+          "network": "147.75.67.72",
+          "netmask": "255.255.255.254",
+          "cidr": 31,
+          "href": "/ips/0b4cafb3-d9d3-42f2-98a6-65ef553a33d6"
+        }
+      },
+      {
+        "id": "2280c6bd-38b8-4f9f-bf7a-de01ad4e010c",
+        "address_family": 6,
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:fffe",
+        "created_at": "2019-02-12T14:29:29Z",
+        "public": true,
+        "cidr": 127,
+        "management": true,
+        "enabled": true,
+        "network": "2604:1380:1:9200::",
+        "address": "2604:1380:1:9200::1",
+        "gateway": "2604:1380:1:9200::",
+        "parent_block": {
+          "network": "2604:1380:0001:9200:0000:0000:0000:0000",
+          "netmask": "ffff:ffff:ffff:ff00:0000:0000:0000:0000",
+          "cidr": 56,
+          "href": "/ips/b72be5b4-249c-415b-b4e2-87e55e989b6e"
+        }
+      },
+      {
+        "id": "83a52dd8-86bc-4405-97c0-f2561644ada6",
+        "address_family": 4,
+        "netmask": "255.255.255.254",
+        "created_at": "2019-02-12T14:29:28Z",
+        "public": false,
+        "cidr": 31,
+        "management": true,
+        "enabled": true,
+        "network": "10.99.185.0",
+        "address": "10.99.185.1",
+        "gateway": "10.99.185.0",
+        "parent_block": {
+          "network": "10.99.185.0",
+          "netmask": "255.255.255.128",
+          "cidr": 25,
+          "href": "/ips/394f44ef-3a8d-4311-b6c3-e4bddbf27bd1"
+        }
+      }
+    ]
+  },
+  "customdata": {},
+  "volumes": [
+    {
+      "ips": [
+        "10.144.34.49",
+        "10.144.50.121"
+      ],
+      "name": "volume-a4a34712",
+      "capacity": {
+        "size": "100",
+        "unit": "gb"
+      },
+      "iqn": "iqn.2013-05.com.daterainc:tc:01:sn:45df0ef9c92ff191"
+    },
+    {
+      "ips": [
+        "10.144.35.132",
+        "10.144.51.11"
+      ],
+      "name": "volume-127ef927",
+      "capacity": {
+        "size": "100",
+        "unit": "gb"
+      },
+      "iqn": "iqn.2013-05.com.daterainc:tc:01:sn:fa2ee5a325685d85"
+    }
+  ],
+  "api_url": "https://metadata.packet.net",
+  "phone_home_url": "http://147.75.195.231/phone-home"
+}
