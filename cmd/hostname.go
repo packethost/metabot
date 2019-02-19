@@ -1,8 +1,6 @@
 package cmd
 
 import (
-  "fmt"
-  "os"
   "github.com/spf13/cobra"
 )
 
@@ -16,8 +14,7 @@ var hostnameCmd = &cobra.Command{
   Long:  `Print the packet hostname`,
   Run: func(cmd *cobra.Command, args []string) {
      // hostname has no qualifiers
-    fmt.Println(data.Hostname)
-    os.Exit(0)
+    reportAndExit(data.Hostname)
   },
 }
 

@@ -2,7 +2,7 @@ package cmd
 
 import (
   "fmt"
-  "os"
+  "strings"
   "github.com/spf13/cobra"
 )
 
@@ -20,8 +20,7 @@ var ipCmd = &cobra.Command{
     for _, addr := range data.Network.Addresses {
         results = append(results, fmt.Sprintf("%s/%d", addr.Address, addr.Cidr))
     }
-    fmt.Println(results)
-    os.Exit(0)
+    reportAndExit(strings.Join(results, " "))
   },
 }
 
