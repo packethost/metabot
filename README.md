@@ -48,6 +48,19 @@ Metabot query `ip` has multiple qualifiers.
 * `address`: return only the address without the `/x` cidr part, e.g. `10.0.10.10 205.206.207.122 2604:1380:1:9200::1`.
 * `netmask`: return the address in `ip/netmask` format instead of `ip/cidr` format.
 
+Examples (remember, the order of qualifiers does **not** matter):
+
+```
+$ metabot ip 4 private # return the private ipv4 entries in cidr format
+10.99.185.1/31
+$ metabot ip 4 private netmask # return the private ipv4 entries in netmask format
+10.99.185.1/255.255.255.254
+$ metabot ip 4 private address # return the private ipv4 entries in address-only format
+10.99.185.1
+$ metabot ip private parent network # return the private ipv4 and ipv6 entries of the parent 
+10.99.185.0/25
+```
+
 ## Custom URL
 By default, Metabot retrieves data from the Packet URL https://metadata.packet.com/metadata , but you can override it with the `--url <url>` option.
 
