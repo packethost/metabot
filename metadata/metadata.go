@@ -32,7 +32,7 @@ type Address struct {
 	Network       string
 	Address       string
 	Gateway       string
-	Parent        *Address
+	Parent        *Address `json:"parent_block"`
 }
 
 // Network complete metadata network information

@@ -29,9 +29,8 @@ var ipCmd = &cobra.Command{
 		for _, a := range args {
 			qualifiers[a] = true
 		}
-
 		// first use the filter qualifiers to filter out which data set we want
-		addresses := make([]*metadata.Address, 0)
+		addresses := make([]metadata.Address, 0)
 		for _, addr := range data.Network.Addresses {
 			// did we exclude it for a particular reason?
 			if addr.Public && qualifiers["private"] {
@@ -46,9 +45,9 @@ var ipCmd = &cobra.Command{
 			if addr.AddressFamily == 4 && qualifiers["6"] {
 				continue
 			}
-			saver := &addr
+			saver := addr
 			if qualifiers["parent"] {
-				saver = addr.Parent
+				saver = *addr.Parent
 			}
 			addresses = append(addresses, saver)
 		}
@@ -56,7 +55,7 @@ var ipCmd = &cobra.Command{
 		for _, addr := range addresses {
 			addrValue := addr.Address
 			if qualifiers["network"] {
-				addrValue = fmt.Sprintf("%s/%d", addr.Network, addr.Cidr)
+				addrValue = addr.Network
 			}
 			saver := fmt.Sprintf("%s/%d", addrValue, addr.Cidr)
 			switch {
