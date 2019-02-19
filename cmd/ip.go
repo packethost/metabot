@@ -61,7 +61,7 @@ var ipCmd = &cobra.Command{
 			saver := fmt.Sprintf("%s/%d", addrValue, addr.Cidr)
 			switch {
 			case qualifiers["netmask"]:
-				saver = fmt.Sprintf("%s/%d", addrValue, addr.Netmask)
+				saver = fmt.Sprintf("%s/%s", addrValue, addr.Netmask)
 			case qualifiers["address"]:
 				saver = fmt.Sprintf("%s", addrValue)
 			}
