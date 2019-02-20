@@ -1,11 +1,12 @@
-FROM alpine:3.9
-
-ARG BINARY=metabot
-ARG ARCH=arm64
+FROM alpine:3.9 as certs
 
 # needed for TLS
 RUN apk --update add ca-certificates
 
+FROM scratch
+ARG BINARY=metabot
+ARG ARCH=arm64
+COPY --from=certs /etc/ssl/certs/ /etc/ssl/certs/
 COPY bin/${BINARY}-${ARCH} ${BINARY}
 
-ENTRYPOINT ["/${BINARY}"]
+ENTRYPOINT ["/metabot"]
