@@ -68,6 +68,9 @@ func getMetadata(u string) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
+		if resp.StatusCode != 200 {
+			return nil, fmt.Errorf("non-200 return code: %d", resp.StatusCode)
+		}
 		defer resp.Body.Close()
 		body, err = ioutil.ReadAll(resp.Body)
 		if err != nil {
