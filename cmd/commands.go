@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/packethost/metabot/util"
 	"github.com/packethost/metabot/metadata"
 	"github.com/spf13/cobra"
 )
@@ -40,7 +41,7 @@ var rootCmd = &cobra.Command{
                 Complete documentation and source are available at https://github.com/packethost/metabot`,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		var err error
-		data, err = metadata.GetAndParseMetadata(u)
+		data, err = util.GetAndParseMetadata(u)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error retrieving and parsing metadata: %v\n", err)
 			os.Exit(1)
