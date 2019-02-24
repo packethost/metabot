@@ -16,7 +16,7 @@ var ipCmd = &cobra.Command{
 	Short: "Print the packet ip information, subject to qualifiers",
 	Long:  `Print the packet ip information, subject to qualifiers`,
 	Run: func(cmd *cobra.Command, args []string) {
-		reportAndExit(strings.Join(ipReport(data, args)," "))
+		reportAndExit(strings.Join(ipReport(data, args), " "))
 	},
 }
 

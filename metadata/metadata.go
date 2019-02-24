@@ -42,4 +42,3 @@ type Metadata struct {
 	Facility string
 	Network  Network
 }
-

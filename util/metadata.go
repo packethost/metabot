@@ -3,10 +3,10 @@ package util
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/packethost/metabot/metadata"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"github.com/packethost/metabot/metadata"
 )
 
 func getMetadata(u string) ([]byte, error) {
@@ -21,7 +21,7 @@ func getMetadata(u string) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-        } else {
+	} else {
 		resp, err := http.Get(u)
 		if err != nil {
 			return nil, err

@@ -3,12 +3,13 @@ package util
 import (
 	"bytes"
 	"fmt"
+	"github.com/packethost/metabot/internal"
+	"github.com/packethost/metabot/metadata"
 	"reflect"
 	"strings"
 	"testing"
-	"github.com/packethost/metabot/internal"
-	"github.com/packethost/metabot/metadata"
 )
+
 const (
 	testFilePath = "../cmd/testdata/metadata.json"
 )
@@ -18,9 +19,9 @@ func TestGetMetadata(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Unable to read test data file: %v", err)
 	}
-	tests := []struct{
-		u string
-		b []byte
+	tests := []struct {
+		u   string
+		b   []byte
 		err error
 	}{
 		{"/foo", nil, fmt.Errorf("Get /foo: unsupported protocol scheme")},
@@ -50,9 +51,9 @@ func TestParseMetadata(t *testing.T) {
 		t.Fatalf("Unable to read test data file: %v", err)
 	}
 
-	tests := []struct{
-		b []byte
-		m *metadata.Metadata
+	tests := []struct {
+		b   []byte
+		m   *metadata.Metadata
 		err error
 	}{
 		{[]byte(`"bad json"`), nil, fmt.Errorf("json: cannot unmarshal string into Go value of type metadata.Metadata")},
@@ -90,9 +91,8 @@ func TestGetAndParseMetadata(t *testing.T) {
 		t.Fatalf("Unexpected non-nil metadata struct  getting and parsing metadata")
 	}
 	if !reflect.DeepEqual(*m, *validMeta) {
-			t.Errorf("mismatched structs returned, actual then expected")
-			t.Logf("%#v", *m)
-			t.Logf("%#v", *validMeta)
+		t.Errorf("mismatched structs returned, actual then expected")
+		t.Logf("%#v", *m)
+		t.Logf("%#v", *validMeta)
 	}
 }
-

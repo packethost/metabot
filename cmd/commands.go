@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/packethost/metabot/util"
 	"github.com/packethost/metabot/metadata"
+	"github.com/packethost/metabot/util"
 	"github.com/spf13/cobra"
 )
 
