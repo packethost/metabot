@@ -1,0 +1,58 @@
+---
+kind: pipeline
+name: testing
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: test
+  pull: always
+  image: golang:1.11-alpine
+  commands:
+  - apk --update add make
+  - make ci-test
+
+- name: build
+  pull: always
+  image: golang:1.11-alpine
+  commands:
+  - apk --update add make
+  - make build-all
+
+- name: publish
+  pull: always
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    auto_tag_suffix: amd64
+    dockerfile: Dockerfile.amd64
+    repo: plugins/docker
+    password:
+      from_secret: docker_password
+    username:
+      from_secret: docker_username
+  when:
+    event:
+      exclude:
+      - pull_request
+
+- name: publish
+  pull: always
+  image: plugins/docker
+  settings:
+    tags: [ $$DRONE_COMMIT ]
+    auto_tag: true
+    auto_tag_suffix: arm64
+    dockerfile: Dockerfile.arm64
+    repo: plugins/docker
+    password:
+      from_secret: docker_password
+    username:
+      from_secret: docker_username
+  when:
+    event:
+      exclude:
+      - pull_request
+
