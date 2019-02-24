@@ -24,12 +24,12 @@ steps:
   commands:
   - apk --update add make git dep
   - make build-all
-  - git log -1 --format="%H" > .tags
 
 - name: publish-amd64
   pull: always
   image: plugins/docker
   settings:
+    tags: "${DRONE_COMMIT}-amd64"
     dockerfile: Dockerfile.amd64
     repo: packethost/metabot
     context: dist/
@@ -46,6 +46,7 @@ steps:
   pull: always
   image: plugins/docker
   settings:
+    tags: "${DRONE_COMMIT}-arm64"
     dockerfile: Dockerfile.arm64
     repo: packethost/metabot
     context: dist/
