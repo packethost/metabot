@@ -30,8 +30,6 @@ steps:
   image: plugins/docker
   settings:
     tags: [ "$$DRONE_COMMIT-amd64" ]
-    auto_tag: true
-    auto_tag_suffix: amd64
     dockerfile: Dockerfile.amd64
     repo: packethost/metabot
     context: dist/
@@ -49,8 +47,6 @@ steps:
   image: plugins/docker
   settings:
     tags: [ "$$DRONE_COMMIT-arm64" ]
-    auto_tag: true
-    auto_tag_suffix: arm64
     dockerfile: Dockerfile.arm64
     repo: packethost/metabot
     context: dist/
