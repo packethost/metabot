@@ -93,7 +93,7 @@ lint: pkgs golint gometalinter
 	@$(BUILD_CMD) gometalinter --disable-all --enable=golint --vendor ./... 
 
 ## Run unittests
-test: pkgs
+test: pkgs vendor
 	@$(BUILD_CMD) go test -short ${PKG_LIST}
 
 ## Vet the files
@@ -131,13 +131,6 @@ sub-build-%:
 build: $(DIST_BINARY)
 $(DIST_BINARY): $(DIST_DIR) vendor
 	$(BUILD_CMD) go build -v -o $@ $(LDFLAGS) $(PACKAGE_NAME)
-
-## ensure we have dep installed
-dep: 
-ifeq (, $(shell which dep))
-	mkdir -p $$GOPATH/bin
-	curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-endif
 
 manifest-tool:
 ifeq (, $(shell which manifest-tool))
