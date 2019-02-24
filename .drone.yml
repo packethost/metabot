@@ -21,7 +21,7 @@ steps:
   - apk --update add make
   - make build-all
 
-- name: publish
+- name: publish-amd64
   pull: always
   image: plugins/docker
   settings:
@@ -38,7 +38,7 @@ steps:
       exclude:
       - pull_request
 
-- name: publish
+- name: publish-arm64
   pull: always
   image: plugins/docker
   settings:
