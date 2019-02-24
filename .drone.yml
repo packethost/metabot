@@ -11,14 +11,14 @@ steps:
   pull: always
   image: golang:1.11-alpine
   commands:
-  - apk --update add make
+  - apk --update add make git
   - make ci-test
 
 - name: build
   pull: always
   image: golang:1.11-alpine
   commands:
-  - apk --update add make
+  - apk --update add make git
   - make build-all
 
 - name: publish-amd64
