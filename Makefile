@@ -90,7 +90,7 @@ endif
 
 ## Lint the files
 lint: pkgs golint gometalinter
-	@$(BUILD_CMD) gometalinter --disable-all --enable=golint   cmd/... metadata
+	@$(BUILD_CMD) gometalinter --disable-all --enable=golint   ./... metadata
 
 ## Run unittests
 test: pkgs
@@ -219,7 +219,10 @@ clean:
 .PHONY: ci cd build deploy push release confirm pull-images
 ## Run what CI runs
 # race has an issue with alpine, see https://github.com/golang/go/issues/14481
-ci: build-all fmt-check lint test vet image-all # race
+ci-test: fmt-check lint test vet # race
+ci-build: build-all
+ci-image: image-all
+ci: ci-test ci-build ci-image
 
 confirm:
 ifndef CONFIRM
