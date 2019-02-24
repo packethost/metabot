@@ -11,6 +11,7 @@ const (
 	testFilePath = "./testdata/metadata.json"
 )
 
+// GetValidMeta get valid Metadata struct for testing
 func GetValidMeta() *metadata.Metadata {
 	return &metadata.Metadata{
 		ID:       "b642678f-1d6e-45a2-aed1-bd0a63135fe5",
@@ -88,6 +89,7 @@ func GetValidMeta() *metadata.Metadata {
 	}
 }
 
+// GetTestData get the json and its source file for testing
 func GetTestData() (string, []byte, error) {
 	jsonFile := path.Join(path.Dir(GetMyCaller()), testFilePath)
 	jsonData, err := ioutil.ReadFile(jsonFile)
@@ -97,6 +99,7 @@ func GetTestData() (string, []byte, error) {
 	return jsonFile, jsonData, nil
 }
 
+// GetMyCaller determine the filename location of the func that calls GetMyCaller()
 func GetMyCaller() string {
 	_, filename, _, _ := runtime.Caller(1)
 	return filename

@@ -90,7 +90,7 @@ endif
 
 ## Lint the files
 lint: pkgs golint gometalinter
-	@$(BUILD_CMD) gometalinter --disable-all --enable=golint   ./... metadata
+	@$(BUILD_CMD) gometalinter --disable-all --enable=golint --vendor ./... 
 
 ## Run unittests
 test: pkgs
