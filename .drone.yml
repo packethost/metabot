@@ -29,6 +29,7 @@ steps:
   pull: always
   image: plugins/docker
   settings:
+    tags: [ "$$DRONE_COMMIT-amd64" ]
     auto_tag: true
     auto_tag_suffix: amd64
     dockerfile: Dockerfile.amd64
@@ -47,7 +48,7 @@ steps:
   pull: always
   image: plugins/docker
   settings:
-    tags: [ $$DRONE_COMMIT ]
+    tags: [ "$$DRONE_COMMIT-arm64" ]
     auto_tag: true
     auto_tag_suffix: arm64
     dockerfile: Dockerfile.arm64
