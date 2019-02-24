@@ -26,7 +26,7 @@ func TestGetMetadata(t *testing.T) {
 	}{
 		{"/foo", nil, fmt.Errorf("Get /foo: unsupported protocol scheme")},
 		{"file:///no_such_file_foo", nil, fmt.Errorf("open /no_such_file_foo: no such file")},
-		{"https://metadata.packet.net/metadata", nil, fmt.Errorf("non-200 return code: 422")},
+		{"https://metadata22.packet.net/metadata", nil, fmt.Errorf("Get https://metadata22.packet.net/metadata: dial tcp: lookup")},
 		{fmt.Sprintf("file://%s", jsonFile), jsonData, nil},
 	}
 	for i, tt := range tests {
