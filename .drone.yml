@@ -10,6 +10,9 @@ steps:
 - name: test
   pull: always
   image: golang:1.11-alpine
+  workspace:
+    base: /go
+    path: src/github.com/packethost/metabot
   commands:
   - apk --update add make git
   - make ci-test
@@ -17,6 +20,9 @@ steps:
 - name: build
   pull: always
   image: golang:1.11-alpine
+  workspace:
+    base: /go
+    path: src/github.com/packethost/metabot
   commands:
   - apk --update add make git
   - make build-all
