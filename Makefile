@@ -97,7 +97,7 @@ test: pkgs
 	@$(BUILD_CMD) go test -short ${PKG_LIST}
 
 ## Vet the files
-vet: pkgs
+vet: pkgs vendor
 	@$(BUILD_CMD) go vet ${PKG_LIST}
 
 ## Read about data race https://golang.org/doc/articles/race_detector.html
