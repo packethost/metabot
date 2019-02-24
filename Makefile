@@ -50,7 +50,7 @@ join_platforms = $(subst $(space),$(comma),$(call prefix_linux,$(strip $1)))
 
 DIST_DIR=./dist/bin
 DIST_BINARY = $(DIST_DIR)/$(BINARY)-$(ARCH)
-BUILD_CMD = GOOS=linux GOARCH=$(ARCH)
+BUILD_CMD = GOOS=linux GOARCH=$(ARCH) CGO_ENABLED=0
 ifdef DOCKERBUILD
 BUILD_CMD = docker run --rm \
                 -e GOARCH=$(ARCH) \
