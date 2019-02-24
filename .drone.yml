@@ -33,6 +33,7 @@ steps:
     auto_tag_suffix: amd64
     dockerfile: Dockerfile.amd64
     repo: plugins/docker
+    context: dist/
     password:
       from_secret: docker_password
     username:
@@ -51,6 +52,7 @@ steps:
     auto_tag_suffix: arm64
     dockerfile: Dockerfile.arm64
     repo: plugins/docker
+    context: dist/
     password:
       from_secret: docker_password
     username:
