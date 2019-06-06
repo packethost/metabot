@@ -71,7 +71,7 @@ steps:
   - curl -sSLo /bin/manifest-tool https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
   - chmod +x /bin/manifest-tool
   - set +x
-  - "echo /bin/manifest-tool --username=***** --password=***** push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:$DRONE_COMMIT --template=packethost/metabot-$DRONE_COMMIT-ARCH"
+  - "echo /bin/manifest-tool --debug --username=***** --password=***** push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:$DRONE_COMMIT --template=packethost/metabot-$DRONE_COMMIT-ARCH"
   - "/bin/manifest-tool --username=$PLUGIN_USERNAME --password=$PLUGIN_PASSWORD push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:$DRONE_COMMIT --template=packethost/metabot-$DRONE_COMMIT-ARCH"
   - set -x
   - set +x
