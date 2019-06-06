@@ -76,5 +76,3 @@ steps:
     event:
       exclude:
       - pull_request
-
-
