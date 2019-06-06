@@ -65,6 +65,10 @@ steps:
 
 - name: manifest-hash
   image: plugins/manifest
+  # add explicit commands because of https://github.com/drone-plugins/drone-manifest/issues/25
+  # when that is fixed, this can be removed
+  commands:
+  - /bin/manifest-tool --username=${PLUGIN_USERNAME} --password=${PLUGIN_PASSWORD} push from-args --platforms=linux/amd64,linux/arm64 --target=${PLUGIN_TARGET} --template=${PLUGIN_TEMPLATE}
   settings:
     ignore_missing: true
     password:
@@ -83,6 +87,8 @@ steps:
 
 - name: manifest-latest
   image: plugins/manifest
+  commands:
+  - /bin/manifest-tool --username=${PLUGIN_USERNAME} --password=${PLUGIN_PASSWORD} push from-args --platforms=linux/amd64,linux/arm64 --target=${PLUGIN_TARGET} --template=${PLUGIN_TEMPLATE}
   settings:
     ignore_missing: true
     password:
