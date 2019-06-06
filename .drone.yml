@@ -70,17 +70,14 @@ steps:
   - apk --update add curl
   - curl -sSLo /bin/manifest-tool https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
   - chmod +x /bin/manifest-tool
-  - "/bin/manifest-tool --username=${PLUGIN_USERNAME} --password=${PLUGIN_PASSWORD} push from-args --platforms=linux/amd64,linux/arm64 --target=${PLUGIN_TARGET}:${DRONE_COMMIT} --template=${PLUGIN_TEMPLATE}-${DRONE_COMMIT}-ARCH"
-  - "/bin/manifest-tool --username=${PLUGIN_USERNAME} --password=${PLUGIN_PASSWORD} push from-args --platforms=linux/amd64,linux/arm64 --target=${PLUGIN_TARGET}:latest--template=${PLUGIN_TEMPLATE}-latest-ARCH"
+  - "/bin/manifest-tool --username=${PLUGIN_USERNAME} --password=${PLUGIN_PASSWORD} push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:${DRONE_COMMIT} --template=packethost/metabot-${DRONE_COMMIT}-ARCH"
+  - "/bin/manifest-tool --username=${PLUGIN_USERNAME} --password=${PLUGIN_PASSWORD} push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:latest --template=packethost/metabot:latest-ARCH"
   settings:
     password:
       from_secret: docker_password
     platforms:
     - linux/amd64
     - linux/arm64
-    repo: packethost/metabot
-    target: packethost/metabot
-    template: packethost/metabot
     username:
       from_secret: docker_username
   when:
