@@ -29,14 +29,14 @@ steps:
   pull: always
   image: plugins/docker
   settings:
-    tags:
-    - "${DRONE_COMMIT}-amd64"
-    - "latest-amd64"
-    dockerfile: Dockerfile.amd64
-    repo: packethost/metabot
     context: dist/
+    dockerfile: Dockerfile.amd64
     password:
       from_secret: docker_password
+    repo: packethost/metabot
+    tags:
+    - "${DRONE_COMMIT}-amd64"
+    - latest-amd64
     username:
       from_secret: docker_username
   when:
@@ -48,14 +48,14 @@ steps:
   pull: always
   image: plugins/docker
   settings:
-    tags:
-    - "${DRONE_COMMIT}-arm64"
-    - "latest-arm64"
-    dockerfile: Dockerfile.arm64
-    repo: packethost/metabot
     context: dist/
+    dockerfile: Dockerfile.arm64
     password:
       from_secret: docker_password
+    repo: packethost/metabot
+    tags:
+    - "${DRONE_COMMIT}-arm64"
+    - latest-arm64
     username:
       from_secret: docker_username
   when:
@@ -66,14 +66,14 @@ steps:
 - name: manifest-hash
   image: plugins/manifest
   settings:
-    target: "packethost/metabot:${DRONE_COMMIT}"
-    template: "packethost/metabot:${DRONE_COMMIT}-ARCH"
-    platforms:
-      - linux/amd64
-      - linux/arm64
     ignore_missing: true
     password:
       from_secret: docker_password
+    platforms:
+    - linux/amd64
+    - linux/arm64
+    target: "packethost/metabot:${DRONE_COMMIT}"
+    template: "packethost/metabot:${DRONE_COMMIT}-ARCH"
     username:
       from_secret: docker_username
   when:
@@ -84,17 +84,19 @@ steps:
 - name: manifest-latest
   image: plugins/manifest
   settings:
-    target: "packethost/metabot:latest"
-    template: "packethost/metabot:latest-ARCH"
-    platforms:
-      - linux/amd64
-      - linux/arm64
     ignore_missing: true
     password:
       from_secret: docker_password
+    platforms:
+    - linux/amd64
+    - linux/arm64
+    target: packethost/metabot:latest
+    template: packethost/metabot:latest-ARCH
     username:
       from_secret: docker_username
   when:
     event:
       exclude:
       - pull_request
+
+...
