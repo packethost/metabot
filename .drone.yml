@@ -59,3 +59,22 @@ steps:
       exclude:
       - pull_request
 
+- name: manifest
+  image: plugins/manifest
+  settings:
+    target: "packethost/metabot:${DRONE_COMMIT}"
+    template: "packethost/metabot:${DRONE_COMMIT}-ARCH"
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    ignore_missing: true
+    password:
+      from_secret: docker_password
+    username:
+      from_secret: docker_username
+  when:
+    event:
+      exclude:
+      - pull_request
+
+
