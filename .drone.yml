@@ -63,16 +63,12 @@ steps:
       exclude:
       - pull_request
 
-- name: manifest
+- name: manifest-commit
   pull: always
-  image: plugins/docker
-  commands:
-  - apk --update add curl
-  - curl -sSLo /bin/manifest-tool https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
-  - chmod +x /bin/manifest-tool
-  - "/bin/manifest-tool --username=$PLUGIN_USERNAME --password=$PLUGIN_PASSWORD push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:$DRONE_COMMIT --template=packethost/metabot:$DRONE_COMMIT-ARCH"
-  - "/bin/manifest-tool --username=$PLUGIN_USERNAME --password=$PLUGIN_PASSWORD push from-args --platforms=linux/amd64,linux/arm64 --target=packethost/metabot:latest --template=packethost/metabot:latest-ARCH"
+  image: plugins/manifest
   settings:
+    target: packethost/metabot:$DRONE_COMMIT
+    template: packethost/metabot:$DRONE_COMMIT-ARCH
     password:
       from_secret: docker_password
     platforms:
@@ -85,4 +81,21 @@ steps:
       exclude:
       - pull_request
 
-...
+- name: manifest-latest
+  pull: always
+  image: plugins/manifest
+  settings:
+    target: packethost/metabot:latest
+    template: packethost/metabot:latest-ARCH
+    password:
+      from_secret: docker_password
+    platforms:
+    - linux/amd64
+    - linux/arm64
+    username:
+      from_secret: docker_username
+  when:
+    event:
+      exclude:
+      - pull_request
+
