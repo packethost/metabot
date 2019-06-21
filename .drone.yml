@@ -67,8 +67,8 @@ steps:
   pull: always
   image: plugins/manifest
   settings:
-    target: packethost/metabot:$DRONE_COMMIT
-    template: packethost/metabot:$DRONE_COMMIT-ARCH
+    target: "packethost/metabot:${DRONE_COMMIT}"
+    template: "packethost/metabot:${DRONE_COMMIT}-ARCH"
     password:
       from_secret: docker_password
     platforms:
