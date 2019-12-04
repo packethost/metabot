@@ -25,6 +25,8 @@ steps:
   - apk --update add make git dep
   - make build-all
 
+## git tagged and latest images
+
 - name: publish-amd64
   pull: always
   image: plugins/docker
@@ -63,6 +65,8 @@ steps:
       exclude:
       - pull_request
 
+## manifests
+
 - name: manifest-commit
   pull: always
   image: plugins/manifest
@@ -99,3 +103,53 @@ steps:
       exclude:
       - pull_request
 
+## Releases
+
+- name: release-amd64
+  pull: always
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile.amd64
+    password:
+      from_secret: docker_password
+    repo: packethost/metabot
+    tags:
+    - "${DRONE_TAG}-amd64"
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - tag
+
+- name: release-arm64
+  pull: always
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile.arm64
+    password:
+      from_secret: docker_password
+    repo: packethost/metabot
+    tags:
+    - "${DRONE_TAG}-arm64"
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - tag
+
+- name: release-manifest-commit
+  pull: always
+  image: plugins/manifest
+  settings:
+    target: "packethost/metabot:${DRONE_TAG}"
+    template: "packethost/metabot:${DRONE_TAG}-ARCH"
+    password:
+      from_secret: docker_password
+    platforms:
+    - linux/amd64
+    - linux/arm64
+    username:
+      from_secret: docker_username
+  when:
+    event:
+      - tag
