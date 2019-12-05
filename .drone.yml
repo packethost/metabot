@@ -109,6 +109,7 @@ steps:
   pull: always
   image: plugins/docker
   settings:
+    context: dist/
     dockerfile: Dockerfile.amd64
     password:
       from_secret: docker_password
@@ -125,6 +126,7 @@ steps:
   pull: always
   image: plugins/docker
   settings:
+    context: dist/
     dockerfile: Dockerfile.arm64
     password:
       from_secret: docker_password
