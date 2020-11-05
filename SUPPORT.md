@@ -1,0 +1,1 @@
+If you require support, please email [support@equinixmetal.com](support@equinixmetal.com), visit the Equinix Metal IRC channel (#equinixmetal on freenode), subscribe to the [Equinix Metal Community Slack](https://equinixmetal.slack.com/) channel or post an issue within this repository.
