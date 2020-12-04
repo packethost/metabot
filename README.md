@@ -1,10 +1,14 @@
+![](https://img.shields.io/badge/Stability-Maintained-green.svg)
+
 # Packet Metabot
 
 Packet Metabot! The robot for your Packet metadata!
 
 Available as an executable binary or container, Metabot _knows_ your metadata and will retrieve whatever you want. Metabot's commands are expanding regularly.
 
-Why not just use `curl | jq`? Sure, you could, but Metabot will extract all of that for you quickly and easily, including expanding and formatting, without any of the long url or, worse, complex `jq` formatting..
+Why not just use `curl | jq`? Sure, you could, but Metabot will extract all of that for you quickly and easily, including expanding and formatting, without any of the long url or, worse, complex `jq` formatting.
+
+This repository is [Maintained](https://github.com/packethost/standards/blob/master/maintained-statement.md) meaning that this software is supported by Packet and its community - available to use in production environments.
 
 ## Installation
 
@@ -63,4 +67,3 @@ $ metabot ip private parent network # return the private ipv4 and ipv6 entries o
 
 ## Custom URL
 By default, Metabot retrieves data from the Packet URL https://metadata.packet.com/metadata , but you can override it with the `--url <url>` option.
-
