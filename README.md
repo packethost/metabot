@@ -67,4 +67,3 @@ $ metabot ip private parent network # return the private ipv4 and ipv6 entries o
 
 ## Custom URL
 By default, Metabot retrieves data from the Equinix Metal URL https://metadata.packet.com/metadata , but you can override it with the `--url <url>` option.
-
